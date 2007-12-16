@@ -4,7 +4,7 @@
 Summary:        A Free Java-PDF library
 Name:           itext2
 Version:        2.0.1
-Release:        %mkrel 3
+Release:        %mkrel 4
 Epoch:          0
 License:        LGPL
 URL:            http://www.lowagie.com/iText/
@@ -15,7 +15,7 @@ Source2:        itext-1.4-manifest.mf
 Patch0:         itext-escape-jpeg-java-trap.patch
 Patch1:         itext-2.0.0-no-get.patch
 Requires:       bouncycastle-jdk1.4 >= 0:1.35
-BuildRequires:  jpackage-utils >= 0:1.6
+BuildRequires:  java-rpmbuild >= 0:1.6
 BuildRequires:  ant
 BuildRequires:  ant-trax
 BuildRequires:  bouncycastle-jdk1.4 >= 0:1.35
