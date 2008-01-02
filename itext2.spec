@@ -20,6 +20,7 @@ BuildRequires:  ant
 BuildRequires:  ant-trax
 BuildRequires:  bouncycastle-jdk1.4 >= 0:1.35
 BuildRequires:  xalan-j2
+BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root
 %if %{gcj_support}
 BuildRequires:    java-gcj-compat-devel
 %else
