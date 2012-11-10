@@ -1,0 +1,48 @@
+--- src/com/lowagie/text/pdf/PdfGraphics2D.java.orig	2006-08-07 21:14:29.000000000 -0400
++++ src/com/lowagie/text/pdf/PdfGraphics2D.java	2006-08-07 21:16:14.000000000 -0400
+@@ -173,12 +173,10 @@
+         super();
+         dg2.setRenderingHint(RenderingHints.KEY_FRACTIONALMETRICS, RenderingHints.VALUE_FRACTIONALMETRICS_ON);
+         setRenderingHint(RenderingHints.KEY_FRACTIONALMETRICS, RenderingHints.VALUE_FRACTIONALMETRICS_ON);
+-        try {
+-            Class.forName("com.sun.image.codec.jpeg.JPEGCodec");
+-        }
+-        catch (Throwable t) {
+-            convertImagesToJPEG = false;
+-        }
++
++        // Free Software implementations don't support JPEG encoding yet
++        convertImagesToJPEG = false;
++
+         this.convertImagesToJPEG = convertImagesToJPEG;
+         this.jpegQuality = quality;
+         this.onlyShapes = onlyShapes;
+@@ -1263,25 +1261,9 @@
+         
+         try {
+             com.lowagie.text.Image image = null;
+-            if(!convertImagesToJPEG){
+-                image = com.lowagie.text.Image.getInstance(img, bgColor);
+-            }
+-            else{
+-                BufferedImage scaled = new BufferedImage(img.getWidth(null), img.getHeight(null), BufferedImage.TYPE_INT_RGB);
+-                Graphics2D g3 = scaled.createGraphics();
+-                g3.drawImage(img, 0, 0, img.getWidth(null), img.getHeight(null), null);
+-                g3.dispose();
+-                
+-                ByteArrayOutputStream baos = new ByteArrayOutputStream();
+-                com.sun.image.codec.jpeg.JPEGImageEncoder encoder = com.sun.image.codec.jpeg.JPEGCodec.createJPEGEncoder(baos);
+-                com.sun.image.codec.jpeg.JPEGEncodeParam param = com.sun.image.codec.jpeg.JPEGCodec.getDefaultJPEGEncodeParam(scaled);
+-                param.setQuality(jpegQuality, true);
+-                encoder.encode(scaled, param);
+-                scaled.flush();
+-                scaled = null;
+-                image = com.lowagie.text.Image.getInstance(baos.toByteArray());
+-                
+-            }
++
++            image = com.lowagie.text.Image.getInstance(img, bgColor);
++
+             if (mask!=null) {
+                 com.lowagie.text.Image msk = com.lowagie.text.Image.getInstance(mask, null, true);
+                 msk.makeMask();
