@@ -7,7 +7,7 @@ Version:        2.0.1
 Release:        %mkrel 7
 Epoch:          0
 License:        LGPL
-URL:            http://www.lowagie.com/iText/
+URL:            https://www.lowagie.com/iText/
 Group:          Development/Java
 Source0:        http://ovh.dl.sourceforge.net/itext/itext-src-%{version}.tar.gz
 Source1:        itext-www-20070221.tar.bz2
